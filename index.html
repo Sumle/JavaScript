@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="em">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>DKRREST</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.js"></script> 
+    <script src="https://unpkg.com/vue@next"></script>
+    <link rel="stylesheet" type="text/css" href="css.css">
+</head>
+<body>
+<div id="app" class="cent">
+  <h1>Danmarks Radio - Musik Liste</h1>
+  <table class="table table-striped cent" v-if="record.length > 0">
+    <input placeholder="Title" type="text" v-model="title">
+        <button v-on:click="filterByTitle(title)">
+            Find
+        </button>
+        <thead>
+            <th><button v-on:click="sortById()">Id</button></th>
+            <th><button v-on:click="sortByTitle()">Title</button></th>
+            <th><button v-on:click="sortByArtist()">Artist</button></th>
+            <th><button v-on:click="sortByDuration()">Duration</button></th>
+            <th><button v-on:click="sortByPublicationYear()">Year</button></th>
+        </thead>
+    <tbody>
+        <tr v-for="music in record">
+            <td>{{music.id}}</td>
+            <td>{{music.title}}</td>
+            <td>{{music.artist}}</td>
+            <td>{{music.duration}}</td>
+            <td>{{music.publicationYear}}</td>
+        </tr>
+    </tbody>
+    </table>
+  <div v-else>Ingen records på Danmarks Radio</div>
+</div>
+<script src="index.js"></script>
+</body>
+</html>
