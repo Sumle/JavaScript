@@ -15,7 +15,7 @@
   <h1>Danmarks Radio - Musik Liste</h1>
   <table class="table table-striped cent" v-if="record.length > 0">
     <input placeholder="Title" type="text" v-model="title">
-        <button v-on:click="filterByTitle(title)">
+        <button v-on:click="filterByTitle">
             Find
         </button>
         <thead>

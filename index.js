@@ -19,27 +19,27 @@ Vue.createApp({
         } catch (ex) {
             alert(ex.message)
         }
-    }
+    },
+    filterByTitle() {
+      const filtered = this.record.filter(music => {
+        return music.title.toLowerCase().includes(this.title.toLowerCase());
+      });
+      this.record = filtered;
+    },
+    sortById() {
+      this.record.sort((music1, music2) => music1.id - music2.id);
+    },
+    sortByTitle() {
+      this.record.sort((music1, music2) => music1.title.localeCompare(music2.title));
+    },
+    sortByArtist() {
+      this.record.sort((music1, music2) => music1.artist.localeCompare(music2.artist));
+    },
+    sortByDuration() {
+      this.record.sort((music1, music2) => music1.duration - music2.duration);
+    },
+    sortByPublicationYear() {
+      this.record.sort((music1, music2) => music1.publicationYear - music2.publicationYear);
+    },
   },
-  sortById() {
-    this.record.sort((music1, music2) => music1.id - music2.id)
-  },
-  sortByTitle() {
-    this.record.sort((music1, music2) => music1.title(music2.title))
-  },
-  sortByArtist() {
-    this.record.sort((music1, music2) => music1.artist(music2.artist))
-  },
-  sortByDuration() {
-    this.record.sort((music1, music2) => music1.duration - music2.duration)
-  },
-  sortByPublicationYear() {
-    this.record.sort((music1, music2) => music1.publicationYear - music2.publicationYear)
-  },
-  filterByTitle(title) {
-    console.log("Title:" + title + ":")
-    console.log("All records " + this.record)
-    this.record = this.record.filter(b => b.title.includes(title))
-    console.log("filtered records: " + this.record)
-    }
-}).mount("#app")
+}).mount("#app");
