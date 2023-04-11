@@ -13,11 +13,8 @@
 <body>
 <div id="app" class="cent">
   <h1>Danmarks Radio - Musik Liste</h1>
-  <table class="table table-striped cent" v-if="record.length > 0">
-    <input placeholder="Title" type="text" v-model="title">
-        <button v-on:click="filterByTitle">
-            Search
-        </button>
+  <table class="table table-striped cent" v-if="filteredRecords.length > 0">
+    <input placeholder="Title" type="text" v-model="searchTitle">
         <thead>
             <th><button v-on:click="sortById()">Id</button></th>
             <th><button v-on:click="sortByTitle()">Title</button></th>
@@ -26,7 +23,7 @@
             <th><button v-on:click="sortByPublicationYear()">Year</button></th>
         </thead>
     <tbody>
-        <tr v-for="music in record">
+        <tr v-for="music in filteredRecords">
             <td>{{music.id}}</td>
             <td>{{music.title}}</td>
             <td>{{music.artist}}</td>

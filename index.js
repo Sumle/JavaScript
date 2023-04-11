@@ -4,7 +4,7 @@ Vue.createApp({
   data() {
     return {
       record: [],
-      title: null
+      searchTitle: ''
     }
   },
   async created() {
@@ -20,12 +20,12 @@ Vue.createApp({
             alert(ex.message)
         }
     },
-    filterByTitle() {
-      const filtered = this.record.filter(music => {
-        return music.title.toLowerCase().includes(this.title.toLowerCase());
-      });
-      this.record = filtered;
-    },
+    // filterByTitle() {
+    //   const filtered = this.record.filter(music => {
+    //     return music.title.toLowerCase().includes(this.title.toLowerCase());
+    //   });
+    //   this.record = filtered;
+    // },
     sortById() {
       this.record.sort((music1, music2) => music1.id - music2.id);
     },
@@ -41,5 +41,15 @@ Vue.createApp({
     sortByPublicationYear() {
       this.record.sort((music1, music2) => music1.publicationYear - music2.publicationYear);
     },
+  },
+  computed:{
+  filteredRecords() {
+    let filtered = this.record;
+    filtered = filtered.filter(music => {
+      return music.title.toLowerCase().includes(this.searchTitle.toLowerCase()) || 
+      music.artist.toLowerCase().includes(this.searchTitle.toLowerCase());
+    });
+    return filtered;
+    }  
   },
 }).mount("#app");
